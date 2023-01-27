@@ -19,7 +19,6 @@ for (let anchor of anchors) {
 
 
 
-
 const {form} = document.forms;
 
     function retriveFormaValue(event) {
@@ -38,6 +37,18 @@ const {form} = document.forms;
         JSON.stringify(values)
         console.log(values)
         console.log(JSON.stringify(values))
-    }
-form.addEventListener('submit', retriveFormaValue)
+        fetch('https://api.morganfinance.io/affiliates/leads', {
 
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Autorization': 'eyJhbGciOiJIUzI1NiJ9.eyJhZmZpbGlhdGVfaWQiOjIzLCJjcmVhdGVkIjoxNjc0NDczNjg0LCJleHBpcmF0aW9uIjowLCJicmFuZCI6ImRlbHRhaW52ZXN0bWVudCIsInJpZ2h0cyI6WyJhZmZpbGlhdGUiXX0.WvhZmP3EOGPpAxHaJ-Ci56wAJX9E0uW47_t3h6DiV3w'
+        },
+        body: JSON.stringify(values)
+    })
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+    }
+
+form.addEventListener('submit', retriveFormaValue)
