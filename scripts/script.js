@@ -21,32 +21,33 @@ for (let anchor of anchors) {
 
 const {form} = document.forms;
 
-    function retriveFormaValue(event) {
-        event.preventDefault();
-        
-        const {email, name, country, phone, pass, currency} = form;
+function retriveFormaValue(event) {
+    event.preventDefault();
+    
+    const {email, firstname, lastname, country, phone, pass, currency} = form;
 
-        const values = {
-            email: email.value,
-            name: name.value,
-            country: country.value,
-            phone: phone.value,
-            pass: pass.value,
-            currency: currency.value
-        };
-        JSON.stringify(values)
-        console.log(JSON.stringify(values))
+    const values = {
+        email: email.value,
+        firstname: firstname.value,
+        lastname: lastname.value,
+        country: country.value,
+        phone: phone.value,
+        pass: pass.value,
+        currency: currency.value
+    };
+    JSON.stringify(values)
+    console.log(JSON.stringify(values))
 
-        fetch('https://63d57925dc3c55baf428bf36.mockapi.io/database/database', {
+    fetch('https://63d57925dc3c55baf428bf36.mockapi.io/database/database', {
 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(values)
-        })
-        .then(response => response.json())
-        .then(response => console.log(JSON.stringify(response)))
-    }
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    },
+    body: JSON.stringify(values)
+    })
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+}
 
 form.addEventListener('submit', retriveFormaValue)
